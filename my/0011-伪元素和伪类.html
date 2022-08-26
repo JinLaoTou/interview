@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<style>
+    a:hover{
+       color: red;
+      }
+      .box{
+        width: 200px;
+        height: 200px;
+    }
+      .box::before{
+      content: "llalalla";
+      color: blue;
+      font-size: 13px;
+  }
+</style>
+<body>
+    <!-- 伪类和伪元素的区别 -->
+    <!-- 1、常见的伪类有：:hover，:active，:visited，:link -->
+    <a href="http://www.baidu.com">百度一下</a>
+    <!-- 2、第一行，伪元素的前缀是两个冒号 ( :: ) ， 同样是添加到选择器后面去选择某个元素的某个部分 -->
+    <div class="box">ssss</div>
+    <div id="test">aaaa</div>
+</body>
+<script>
+    // function debounce(fn, delay) {
+    //     let timer
+    //     return function(){
+    //         let _this = this
+    //         let args = arguments
+    //         if(timer){
+    //             clearTimeout(timer)
+    //         }
+    //         timer = setTimeout(function(){
+    //             fn.apply(_this, args)
+    //         },delay)
+    //     }
+    // }
+    // function fn(){
+    //     console.log('------>aaaa');
+    // }
+    // let testFn = document.querySelector('.box')
+    // testFn.onclick = function(){
+    //     console.log('--------');
+    //     debounce(fn,300)
+    // }
+    // testFn.addEventListener('click', debounce(fn,3000))
+const dd = document.getElementById('test')
+    // 当事件被触发-会延迟几秒之后在执行回调
+// 如果在延迟的几秒内再次触发事件-那么重新执行回调-重新计时
+/*  防抖
+ function antiShake(fn,delay){
+  let timer
+  return function(...args){
+    if(timer){
+      clearTimeout(timer)
+    }
+    timer = setTimeout(() => {
+      fn.apply(this,args)
+    }, delay);
+  }
+} */
+
+/** 
+ * 节流
+*/
+function throttle(fn, delay) {
+    var timer;
+    return function () {
+        var _this = this;
+        var args = arguments;
+        if (timer) {
+            return;
+        }
+        timer = setTimeout(function () {
+            fn.apply(_this, args);
+            timer = null; // 在delay后执行完fn之后清空timer，此时timer为假，throttle触发可以进入计时器
+        }, delay)
+    }
+}
+
+// 检测
+function test() {
+  console.dir('run antiShakeTest')
+}
+// 屏幕滚动触发事件
+dd.addEventListener('click',throttle(test,2000))
+
+</script>
+</html>
