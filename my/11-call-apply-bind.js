@@ -3,8 +3,13 @@
  * @param {*} context 
  * @param  {...any} args 
  * @returns 
+ * 1、首先context是可选参数，如果不传，默认上下文为window
+ * 2、给context创建一个fn属性，并将值设置为需要调用的函数
  */
 Function.prototype.myCall = function (context, ...args) {
+  if(typeof this !== 'function'){
+    throw new Error('error!')
+  }
     if (!context || context === null) {
       context = window;
     }
