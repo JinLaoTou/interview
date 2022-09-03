@@ -29,6 +29,24 @@
     }
     return arr
   } 
+  // filter // 方法
+function filter(arr,callback) {
+  let flag = !Array.isArray(arr) || !arr.length || typeof callback !=='function'
+if(flag){
+  return []
+}else{
+  let newArr = []
+  for (let index = 0; index < arr.length; index++) {
+       if(callback(arr[index],index,arr)){
+         newArr.push(arr[index])
+       }
+    
+  }
+  return newArr
+}
+  
+}
+console.log(filter(allArr,(item)=>item>2))
 //   const newArr = [1, 2, 3].filter((item, i, arr) => {
 //     return item > 1
 //   })
@@ -53,3 +71,16 @@ Array.prototype.map = function (fn) {
   const newArr = [1, 2, 3].map((e, i, arr) => e+1)
   console.log(newArr);
 // [1, 2, 3] 
+
+/**
+ * 手写reduce
+ * @param {*} reducer 
+ * @param {*} initVal 
+ * @returns 
+ */
+Array.prototype.reduce = function (reducer,initVal) {
+  for(let i=0;i<this.length;i++){
+      initVal =reducer(initVal,this[i],i,this);
+  }
+  return initVal
+};
