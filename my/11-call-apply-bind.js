@@ -97,8 +97,8 @@ let fn = Symbol();
     console.log(this.objAge); //'我是obj传进来的age'
   }
 
-//   let test = Person.myCall(obj, '我是参数传进来的name', 25)
-//   let test2 = Person.myApply(obj, ['我是参数传进来的name', 25])
+  // let test = Person.myCall(obj, '我是参数传进来的name', 25)
+  // let test2 = Person.myApply(obj, ['我是参数传进来的name', 25])
   
   // 先测试作为构造函数调用
   let bindFun = Person.myBind(obj, '我是参数传进来的name')
