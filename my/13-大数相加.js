@@ -1,3 +1,9 @@
+/**
+ * 大数相加
+ * @param {string} a 
+ * @param {string} b 
+ * @returns 
+ */
 function add(a ,b){
     //取两个数字的最大长度
     let maxLength = Math.max(a.length, b.length);
